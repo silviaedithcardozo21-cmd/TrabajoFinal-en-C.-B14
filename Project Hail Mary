@@ -1,1 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛸 PROJECT HAIL MARY: Despegue de ARTEMIS 🚀</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-space: #02040a;
+            --panel-bg: #070c1e;
+            --panel-border: #132247;
+            --cyan-glow: #00f0ff;
+            --cyan-glow-dim: rgba(0, 240, 255, 0.25);
+            --blue-accent: #1e6091;
+            --purple-accent: #7b2cbf;
+            --text-main: #e2e8f0;
+            --text-muted: #64748b;
+            --error-red: #ff2a6d;
+        }
 
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background-color: var(--bg-space);
+            color: var(--text-main);
+            background-image: 
+                radial-gradient(rgba(0, 240, 255, 0.08) 1px, transparent 1px),
+                radial-gradient(rgba(123, 44, 191, 0.05) 1px, transparent 1px);
+            background-size: 32px 32px, 64px 64px;
+        }
+
+        .font-orbitron {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .font-tech {
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .card-dark {
+            background-color: var(--panel-bg);
+            border: 1px solid var(--panel-border);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), inset 0 0 1px rgba(0, 240, 255, 0.2);
+        }
+
+        .glow-cyan-border {
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 15px var(--cyan-glow-dim);
+        }
+
+        .input-dark {
+            background-color: #030611;
+            border: 1px solid #1a2c5b;
+            border-radius: 10px;
+            color: var(--cyan-glow);
+            transition: all 0.2s ease;
+        }
+
+        .input-dark:focus {
+            outline: none;
+            border-color: var(--cyan-glow);
+            box-shadow: 0 0 12px var(--cyan-glow-dim);
+        }
+
+        .btn-cyan {
+            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            color: #000000;
+            border-radius: 10px;
+            font-weight: 700;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+            transition: all 0.2s ease;
+        }
+
+        .btn-cyan:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 0 30px rgba(0, 240, 255, 0.7);
+        }
+
+        .btn-dark-secondary {
+            background-color: #0d1733;
+            border: 1px solid #1e3a7a;
+            color: var(--cyan-glow);
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-dark-secondary:hover:not(:disabled) {
+            background-color: #162654;
+            border-color: var(--cyan-glow);
+        }
+
+        .result-card {
+            background-color: #030611;
+            border-radius: 12px;
+            border-left: 4px solid var(--blue-accent);
+            border-top: 1px solid #132247;
+            border-right: 1px solid #132247;
+            border-bottom: 1px solid #132247;
+        }
+
+        .result-card.active-phase {
+            border-left-color: var(--cyan-glow);
+            background-color: #081533;
+            box-shadow: 0 0 15px var(--cyan-glow-dim);
+            animation: pulse-cyan 1.5s infinite alternate;
+        }
+
+        @keyframes pulse-cyan {
+            from { box-shadow: 0 0 5px rgba(0, 240, 255, 0.2); }
+            to { box-shadow: 0 0 20px rgba(0, 240, 255, 0.6); }
+        }
+
+        canvas {
+            background: linear-gradient(180deg, #010206 0%, #040817 50%, #0a1329 100%);
+            border-radius: 14px;
+            border: 1px solid #1e3a7a;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #030611;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e3a7a;
+            border-radius: 6px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--cyan-glow);
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-6">
+    <div class="max-w-7xl mx-auto space-y-6">
+        
+        <!-- HEADER PRINCIPAL DEEP SPACE -->
+        <header class="card-dark p-6 text-center border-t-2 border-t-[#00f0ff] relative overflow-hidden">
+            <div class="absolute -top-10 -left-10 w-40 h-40 bg-[#00f0ff]/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-10 -right-10 w-40 h-40 bg-[#7b2cbf]/15 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <h1 class="text-3xl md:text-5xl font-extrabold text-white tracking-widest font-orbitron flex items-center justify-center gap-3">
+                <span class="text-[#00f0ff]">🛸</span> PROJECT HAIL MARY <span class="text-[#00f0ff]">🌌</span>
+            </h1>
+            <p class="text-[#00f0ff] font-tech text-xs md:text-sm tracking-widest mt-2 uppercase">
+                🎵 Ryland Grace & Rocky • Telemetría de Propulsión por Astrófago en Consola Eridiana
+            </p>
+        </header>
+
+        <!-- CONTENIDO PRINCIPAL: GRID 3 COLUMNAS -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- COLUMNA IZQUIERDA: PARÁMETROS -->
+            <div class="lg:col-span-4 space-y-5">
+                <div class="card-dark p-5">
+                    <h2 class="text-lg font-bold text-[#00f0ff] font-orbitron border-b border-[#132247] pb-2 mb-4 flex items-center justify-between">
+                        <span>🧪 Consola de Comando</span>
+                        <span class="text-xs font-tech bg-[#00f0ff]/10 text-[#00f0ff] px-2.5 py-1 rounded-full border border-[#00f0ff]/30">Astrophage V4</span>
+                    </h2>
+
+                    <form id="simForm" class="space-y-3 font-tech">
+                        <div>
+                            <label class="text-xs text-slate-400 uppercase tracking-wider block mb-1">⚡ Velocidad Inicial (v0)[m/s]</label>
+                            <input type="number" id="v_ini" value="0" step="any" class="input-dark w-full p-2.5 text-lg">
+                        </div>
+                        <div>
+                            <label class="text-xs text-slate-400 uppercase tracking-wider block mb-1">📍 Altura Inicial (y0)[m]</label>
+                            <input type="number" id="y_ini" value="0" step="any" class="input-dark w-full p-2.5 text-lg">
+                        </div>
+                        <div>
+                            <label class="text-xs text-slate-400 uppercase tracking-wider block mb-1">🔥 Aceleración Fase 1 Astrófago (a1)[m/s²]</label>
+                            <input type="number" id="a1" value="20.0" step="any" class="input-dark w-full p-2.5 text-lg">
+                        </div>
+                        <div>
+                            <label class="text-xs text-slate-400 uppercase tracking-wider block mb-1">⏱️ Tiempo desacople Etapa 1 (t1)[s]</label>
+                            <input type="number" id="t1" value="120.0" step="any" class="input-dark w-full p-2.5 text-lg">
+                        </div>
+                        <div>
+                            <label class="text-xs text-slate-400 uppercase tracking-wider block mb-1">🚀 Aceleración Propulsor Principal (a2)[m/s²]</label>
+                            <input type="number" id="a2" value="12.5" step="any" class="input-dark w-full p-2.5 text-lg">
+                        </div>
+                        <div>
+                            <label class="text-xs text-slate-400 uppercase tracking-wider block mb-1">🎯 Altitud MECO / Apagado (h)[m]</label>
+                            <input type="number" id="h_apagado" value="160000.0" step="any" class="input-dark w-full p-2.5 text-lg">
+                        </div>
+                        <div>
+                            <label class="text-xs text-slate-400 uppercase tracking-wider block mb-1">🌍 Gravedad (g)[m/s²]</label>
+                            <input type="number" id="g" value="9.8" step="any" class="input-dark w-full p-2.5 text-lg">
+                        </div>
+
+                        <!-- Velocidad de Simulación -->
+                        <div class="pt-2">
+                            <label class="text-xs text-slate-400 uppercase tracking-wider flex justify-between mb-1">
+                                <span>⏩ Factor de Animación</span>
+                                <span id="speedVal" class="text-[#00f0ff]">50x</span>
+                            </label>
+                            <input type="range" id="speedSlider" min="1" max="100" value="50" class="w-full accent-[#00f0ff] cursor-pointer">
+                        </div>
+                    </form>
+
+                    <!-- CONTROLES -->
+                    <div class="grid grid-cols-1 gap-2.5 pt-4 font-orbitron">
+                        <button id="btnStart" onclick="iniciarSimulacion()" class="btn-cyan w-full py-3.5 text-sm uppercase tracking-wider flex items-center justify-center gap-2">
+                            <span>🚀</span> ¡Iniciar Ignición!
+                        </button>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button id="btnBriefing" onclick="toggleBriefing()" class="btn-dark-secondary w-full py-2.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1">
+                                <span>📜</span> Instrucciones
+                            </button>
+                            <button id="btnReset" onclick="resetearSimulacion()" class="btn-dark-secondary w-full py-2.5 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-1">
+                                <span>🔄</span> Reiniciar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMNA CENTRAL: CANVAS DE ANIMACIÓN -->
+            <div class="lg:col-span-5 flex flex-col space-y-4">
+                <!-- BRIEFING -->
+                <div id="briefingBox" class="card-dark p-4 hidden border-l-4 border-l-[#00f0ff] text-xs space-y-2 text-slate-300">
+                    <div class="font-orbitron font-bold text-[#00f0ff] text-sm flex justify-between items-center border-b border-[#132247] pb-1">
+                        <span>📜 INSTRUCCIONES DE MISIÓN ARTEMIS</span>
+                        <button onclick="toggleBriefing()" class="text-slate-400 hover:text-[#00f0ff]">✕</button>
+                    </div>
+                    <p>• <strong>Tripulación:</strong> Dr. Ryland Grace & Ingeniero Rocky (Eridiano) 🕷️.</p>
+                    <p>• <strong>Motor:</strong> Emisión fotónica por masa de Astrófago enriquecido.</p>
+                    <p>• <strong>Fase 1:</strong> Ascenso inicial y desacople de tanques adicionales a los t1 s.</p>
+                    <p>• <strong>Fase 2:</strong> Empuje fotónico puro hasta los 160.000m.</p>
+                    <p>• <strong>Fase 3:</strong> Inercia de apogeo en caída libre orbital.</p>
+                </div>
+
+                <div class="card-dark p-4 flex-1 flex flex-col justify-between relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-2">
+                        <h2 class="text-sm font-bold text-[#00f0ff] font-orbitron flex items-center gap-2">
+                            <span>🛰️</span> Trayectoria de la Hail Mary
+                        </h2>
+                        <span id="badgeFase" class="text-xs font-tech px-3 py-1 bg-[#030611] text-[#00f0ff] rounded-full border border-[#00f0ff]/30">
+                            STANDBY
+                        </span>
+                    </div>
+
+                    <!-- CANVAS -->
+                    <div class="relative w-full flex-1 min-h-[440px] flex items-center justify-center">
+                        <canvas id="simCanvas" class="w-full h-full absolute inset-0"></canvas>
+                        
+                        <!-- OVERLAY HUD -->
+                        <div class="absolute top-3 left-3 bg-[#02040a]/90 backdrop-blur-md p-3 rounded-xl border border-[#00f0ff]/30 text-white space-y-1 text-xs font-tech shadow-xl">
+                            <div class="text-[#00f0ff] font-bold border-b border-[#00f0ff]/30 pb-0.5 text-[11px] tracking-wider">HUD TELEMETRÍA HAIL MARY</div>
+                            <div>TIEMPO: <span id="hudTime" class="text-amber-400">0.0</span> s</div>
+                            <div>ALTITUD: <span id="hudAlt" class="text-cyan-400">0.0</span> m</div>
+                            <div>VELOCIDAD: <span id="hudVel" class="text-emerald-400">0.0</span> m/s</div>
+                            <div>ACEL: <span id="hudAcc" class="text-purple-400">0.0</span> m/s²</div>
+                        </div>
+                    </div>
+
+                    <!-- LEYENDA -->
+                    <div class="flex items-center justify-between text-xs text-slate-400 font-tech mt-3 px-1">
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-[#00f0ff] inline-block shadow-[0_0_8px_#00f0ff]"></span> Luz Astrófago</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-indigo-400 inline-block"></span> Módulo Central</span>
+                        <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-full bg-purple-500 inline-block"></span> Señal Rocky 🎵</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA: REPORTES & BITÁCORA -->
+            <div class="lg:col-span-3 space-y-5">
+                <div class="card-dark p-5">
+                    <h2 class="text-lg font-bold text-[#00f0ff] font-orbitron border-b border-[#132247] pb-2 mb-4">
+                        <span>📊 Telemetría en Vivo</span>
+                    </h2>
+
+                    <div id="statusAlert" class="p-3 rounded-xl bg-[#030611] text-[#00f0ff] text-xs font-tech mb-3 border border-[#00f0ff]/30">
+                        ⚡ 🎶 Genial! Listo para la ignición de Astrófago.
+                    </div>
+
+                    <div class="space-y-3 font-tech">
+                        <div id="cardPhase1" class="result-card p-3">
+                            <div class="text-xs text-slate-400 uppercase">FASE 1: DESACOPLE TANQUES ($t_1$)</div>
+                            <div class="text-lg font-bold text-[#00f0ff]" id="resV1">v1: - m/s</div>
+                            <div class="text-xs text-slate-300" id="resY1">y1: - m</div>
+                        </div>
+
+                        <div id="cardPhase2" class="result-card p-3">
+                            <div class="text-xs text-slate-400 uppercase">FASE 2: MECO / APAGADO MOTORES</div>
+                            <div class="text-lg font-bold text-[#00f0ff]" id="resV2">v2: - m/s</div>
+                            <div class="text-xs text-slate-300">Altitud: 160.000 m</div>
+                        </div>
+
+                        <div id="cardPhase3" class="result-card p-3">
+                            <div class="text-xs text-slate-400 uppercase">FASE 3: APOGEO DE ÓRBITA</div>
+                            <div class="text-lg font-bold text-[#00f0ff]" id="resHmax">hmax: - m</div>
+                        </div>
+
+                        <div class="result-card p-3">
+                            <div class="text-xs text-slate-400 uppercase">CARGA G SOBRE RYLAND GRACE</div>
+                            <div class="text-lg font-bold text-[#00f0ff]" id="resG">Acel: - G</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BITÁCORA GRACE & ROCKY -->
+                <div class="card-dark p-4">
+                    <h3 class="text-xs font-bold text-[#00f0ff] font-orbitron mb-2 flex items-center gap-1 uppercase tracking-wider">
+                        <span>📜</span> Bitácora Grace & Rocky
+                    </h3>
+                    <div id="logBox" class="bg-[#02040a] p-3 rounded-xl border border-[#132247] h-36 overflow-y-auto font-tech text-xs space-y-1.5 text-slate-300">
+                        <div class="text-slate-500">[00:00] Inoculación de Astrófago completa.</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- SCRIPT DE FÍSICA Y ANIMACIÓN EN CANVAS -->
+    <script>
+        let animId = null;
+        let isRunning = false;
+        let isPaused = false;
+        
+        let simTime = 0;
+        let curY = 0;
+        let curV = 0;
+        let curA = 0;
+        let currentPhase = 0;
+
+        let calcRes = { v1: 0, y1: 0, v2: 0, hmax: 0, gMultiplo: 0 };
+        
+        let particles = [];
+        let tanksSeparated = false;
+        let leftTank = { x: 0, y: 0, vx: 0, vy: 0, rot: 0 };
+        let rightTank = { x: 0, y: 0, vx: 0, vy: 0, rot: 0 };
+
+        const canvas = document.getElementById('simCanvas');
+        const ctx = canvas.getContext('2d');
+        const speedSlider = document.getElementById('speedSlider');
+        const speedValDisplay = document.getElementById('speedVal');
+
+        function resizeCanvas() {
+            const rect = canvas.parentElement.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = rect.height;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        speedSlider.addEventListener('input', (e) => {
+            speedValDisplay.innerText = `${e.target.value}x`;
+        });
+
+        function toggleBriefing() {
+            const box = document.getElementById('briefingBox');
+            box.classList.toggle('hidden');
+        }
+
+        function obtenerParametros() {
+            return {
+                v0: parseFloat(document.getElementById('v_ini').value) || 0,
+                y0: parseFloat(document.getElementById('y_ini').value) || 0,
+                a1: parseFloat(document.getElementById('a1').value) || 0,
+                t1: parseFloat(document.getElementById('t1').value) || 0,
+                a2: parseFloat(document.getElementById('a2').value) || 0,
+                hApagado: parseFloat(document.getElementById('h_apagado').value) || 0,
+                g: parseFloat(document.getElementById('g').value) || 9.8
+            };
+        }
+
+        function calcularFisicaTeorica(p) {
+            const v1 = p.v0 + p.a1 * p.t1;
+            const y1 = p.y0 + p.v0 * p.t1 + 0.5 * p.a1 * p.t1 * p.t1;
+
+            let v2 = 0;
+            const dist2 = p.hApagado - y1;
+            if (dist2 > 0) {
+                v2 = Math.sqrt(v1 * v1 + 2 * p.a2 * dist2);
+            } else {
+                v2 = v1;
+            }
+
+            const distCaida = (v2 * v2) / (2 * p.g);
+            const hmax = p.hApagado + distCaida;
+            const gMultiplo = p.a1 / p.g;
+
+            return { v1, y1, v2, hmax, gMultiplo };
+        }
+
+        function validarInputs(p) {
+            if (p.a1 <= 0 || p.t1 <= 0 || p.a2 <= 0 || p.g <= 0) {
+                mostrarAlerta("⚠️ Aceleración y tiempo deben ser mayores a cero.", true);
+                return false;
+            }
+            const y1Teorico = p.y0 + p.v0 * p.t1 + 0.5 * p.a1 * p.t1 * p.t1;
+            if (p.hApagado < y1Teorico) {
+                mostrarAlerta(`❌ Altitud MECO (${p.hApagado}m) menor a Etapa 1 (${y1Teorico.toFixed(1)}m).`, true);
+                return false;
+            }
+            return true;
+        }
+
+        function mostrarAlerta(msg, isError = false) {
+            const el = document.getElementById('statusAlert');
+            el.innerText = msg;
+            if (isError) {
+                el.className = "p-3 rounded-xl bg-[#2a0815] text-[#ff2a6d] text-xs font-tech mb-3 border border-[#ff2a6d]/40";
+            } else {
+                el.className = "p-3 rounded-xl bg-[#030611] text-[#00f0ff] text-xs font-tech mb-3 border border-[#00f0ff]/30";
+            }
+        }
+
+        function addLog(msg) {
+            const logBox = document.getElementById('logBox');
+            const timeStr = simTime.toFixed(1).padStart(5, '0');
+            const entry = document.createElement('div');
+            entry.innerHTML = `<span class="text-[#00f0ff]">[${timeStr}s]</span> ${msg}`;
+            logBox.appendChild(entry);
+            logBox.scrollTop = logBox.scrollHeight;
+        }
+
+        function iniciarSimulacion() {
+            const p = obtenerParametros();
+            if (!validarInputs(p)) return;
+
+            calcRes = calcularFisicaTeorica(p);
+
+            document.getElementById('resV1').innerText = `v1: ${calcRes.v1.toFixed(2)} m/s`;
+            document.getElementById('resY1').innerText = `y1: ${calcRes.y1.toFixed(2)} m (${(calcRes.y1/1000).toFixed(1)} km)`;
+            document.getElementById('resV2').innerText = `v2: ${calcRes.v2.toFixed(2)} m/s`;
+            document.getElementById('resHmax').innerText = `h_max: ${calcRes.hmax.toFixed(2)} m (${(calcRes.hmax/1000).toFixed(1)} km)`;
+            document.getElementById('resG').innerText = `Acel: ${calcRes.gMultiplo.toFixed(2)} G`;
+
+            simTime = 0;
+            curY = p.y0;
+            curV = p.v0;
+            curA = p.a1;
+            currentPhase = 1;
+            particles = [];
+            tanksSeparated = false;
+
+            isRunning = true;
+            isPaused = false;
+
+            document.getElementById('btnStart').disabled = true;
+            document.getElementById('logBox').innerHTML = '';
+
+            mostrarAlerta("🔥 Ignición de Astrófago. Grace y Rocky confirman despegue.");
+            addLog("🚀 Emisión IR activada. 🎶 Amaze! Amaze!");
+
+            if (animId) cancelAnimationFrame(animId);
+            lastFrameTime = performance.now();
+            requestAnimationFrame(bucleAnimacion);
+        }
+
+        function resetearSimulacion() {
+            isRunning = false;
+            isPaused = false;
+            if (animId) cancelAnimationFrame(animId);
+
+            simTime = 0;
+            curY = 0;
+            curV = 0;
+            curA = 0;
+            currentPhase = 0;
+            particles = [];
+            tanksSeparated = false;
+
+            document.getElementById('btnStart').disabled = false;
+            document.getElementById('badgeFase').innerText = "STANDBY";
+            document.getElementById('badgeFase').className = "text-xs font-tech px-3 py-1 bg-[#030611] text-[#00f0ff] rounded-full border border-[#00f0ff]/30";
+
+            document.getElementById('hudTime').innerText = "0.0";
+            document.getElementById('hudAlt').innerText = "0.0";
+            document.getElementById('hudVel').innerText = "0.0";
+            document.getElementById('hudAcc').innerText = "0.0";
+
+            document.getElementById('cardPhase1').classList.remove('active-phase');
+            document.getElementById('cardPhase2').classList.remove('active-phase');
+            document.getElementById('cardPhase3').classList.remove('active-phase');
+
+            mostrarAlerta("⚡ 🎶 Amaze! Listo para la ignición de Astrófago.");
+            dibujarEscena();
+        }
+
+        let lastFrameTime = performance.now();
+
+        function bucleAnimacion(now) {
+            if (!isRunning || isPaused) return;
+
+            const dtReal = (now - lastFrameTime) / 1000;
+            lastFrameTime = now;
+
+            const multiplier = parseFloat(speedSlider.value);
+            const dt = dtReal * multiplier;
+
+            const p = obtenerParametros();
+
+            if (currentPhase === 1) {
+                curA = p.a1;
+                simTime += dt;
+                curV = p.v0 + p.a1 * simTime;
+                curY = p.y0 + p.v0 * simTime + 0.5 * p.a1 * simTime * simTime;
+
+                document.getElementById('cardPhase1').classList.add('active-phase');
+                document.getElementById('badgeFase').innerText = "FASE 1: ASTRÓFAGO AUXILIAR";
+
+                if (simTime >= p.t1) {
+                    currentPhase = 2;
+                    tanksSeparated = true;
+                    leftTank = { x: -16, y: 0, vx: -35, vy: -12, rot: -0.25 };
+                    rightTank = { x: 16, y: 0, vx: 35, vy: -12, rot: 0.25 };
+
+                    document.getElementById('cardPhase1').classList.remove('active-phase');
+                    document.getElementById('cardPhase2').classList.add('active-phase');
+                    mostrarAlerta("✂️ Desacople de módulos auxiliares. Inyección Fase 2.");
+                    addLog("✂️ Tanques eyectados. Rocky confirma sellado.");
+                }
+            } 
+            else if (currentPhase === 2) {
+                curA = p.a2;
+                simTime += dt;
+                curV += p.a2 * dt;
+                curY += curV * dt;
+
+                document.getElementById('badgeFase').innerText = "FASE 2: EMPUJE PRINCIPAL";
+
+                if (curY >= p.hApagado) {
+                    currentPhase = 3;
+                    curY = p.hApagado;
+                    document.getElementById('cardPhase2').classList.remove('active-phase');
+                    document.getElementById('cardPhase3').classList.add('active-phase');
+                    mostrarAlerta("⚠️ Corte de motores (MECO). Fase 3: Inercia.");
+                    addLog("🎯 Altitud de 160.000m alcanzada. Apagado de reactores.");
+                }
+            } 
+            else if (currentPhase === 3) {
+                curA = -p.g;
+                simTime += dt;
+                curV -= p.g * dt;
+                curY += curV * dt;
+
+                document.getElementById('badgeFase').innerText = "FASE 3: APOGEO / INERCIA";
+
+                if (curV <= 0) {
+                    curV = 0;
+                    currentPhase = 4;
+                    isRunning = false;
+                    document.getElementById('cardPhase3').classList.remove('active-phase');
+                    document.getElementById('badgeFase').innerText = "APOGEO ALCANZADO";
+                    document.getElementById('badgeFase').className = "text-xs font-tech px-3 py-1 bg-purple-900/60 text-purple-300 rounded-full border border-purple-500/50";
+                    mostrarAlerta("🌌 ¡Apogeo alcanzado! Ryland Grace reporta curso a 40 Eridani.");
+                    addLog(`☄️ Altitud máxima de la Hail Mary alcanzada: ${curY.toFixed(2)} m. 🎶 Amaze!`);
+                }
+            }
+
+            document.getElementById('hudTime').innerText = simTime.toFixed(1);
+            document.getElementById('hudAlt').innerText = curY.toFixed(1);
+            document.getElementById('hudVel').innerText = curV.toFixed(1);
+            document.getElementById('hudAcc').innerText = curA.toFixed(1);
+
+            if (currentPhase === 1 || currentPhase === 2) {
+                crearParticulasAstrofago(currentPhase);
+            }
+
+            if (tanksSeparated) {
+                leftTank.x += leftTank.vx * dtReal * 10;
+                leftTank.y += leftTank.vy * dtReal * 10 + 18 * dtReal;
+                leftTank.rot -= dtReal * 2;
+
+                rightTank.x += rightTank.vx * dtReal * 10;
+                rightTank.y += rightTank.vy * dtReal * 10 + 18 * dtReal;
+                rightTank.rot += dtReal * 2;
+            }
+
+            dibujarEscena();
+
+            if (isRunning && !isPaused) {
+                requestAnimationFrame(bucleAnimacion);
+            }
+        }
+
+        function crearParticulasAstrofago(fase) {
+            const num = fase === 1 ? 8 : 4;
+            for (let i = 0; i < num; i++) {
+                particles.push({
+                    x: (Math.random() - 0.5) * (fase === 1 ? 24 : 12),
+                    y: 42 + Math.random() * 8,
+                    vx: (Math.random() - 0.5) * 45,
+                    vy: 130 + Math.random() * 150,
+                    size: 3 + Math.random() * 7,
+                    color: Math.random() > 0.3 ? '#00f0ff' : (Math.random() > 0.5 ? '#7b2cbf' : '#ffffff'),
+                    alpha: 1,
+                    life: 0.3 + Math.random() * 0.4
+                });
+            }
+        }
+
+        function dibujarEscena() {
+            const w = canvas.width;
+            const h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+
+            // Fondo espacial con estrellas cian y blancas titilantes
+            const numStars = 75;
+            for (let i = 0; i < numStars; i++) {
+                const sx = (Math.sin(i * 99 + simTime * 0.3) * 0.5 + 0.5) * w;
+                const sy = (Math.cos(i * 44) * 0.5 + 0.5) * h;
+                const size = (i % 3) === 0 ? 2 : 1;
+                ctx.globalAlpha = Math.sin(simTime * 3 + i) * 0.4 + 0.6;
+                ctx.fillStyle = i % 4 === 0 ? '#00f0ff' : '#ffffff';
+                ctx.beginPath();
+                ctx.arc(sx, sy, size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.globalAlpha = 1.0;
+
+            const p = obtenerParametros();
+            const hMaxVis = Math.max(calcRes.hmax, 170000);
+            
+            const progress = Math.min(curY / hMaxVis, 1.0);
+            const shipY = h - 65 - progress * (h - 145);
+            const shipX = w / 2;
+
+            // Superficie / Plataforma
+            const groundY = h - (progress * (h - 145));
+            if (groundY < h + 60) {
+                ctx.fillStyle = '#06102b';
+                ctx.fillRect(0, groundY, w, h - groundY);
+
+                ctx.fillStyle = '#00f0ff';
+                ctx.shadowColor = '#00f0ff';
+                ctx.shadowBlur = 10;
+                ctx.fillRect(w / 2 - 45, groundY - 6, 90, 6);
+                ctx.shadowBlur = 0;
+            }
+
+            // Partículas de emisión neon de Astrófago
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const pt = particles[i];
+                pt.y += pt.vy * 0.016;
+                pt.x += pt.vx * 0.016;
+                pt.alpha -= 0.016 / pt.life;
+
+                if (pt.alpha <= 0) {
+                    particles.splice(i, 1);
+                    continue;
+                }
+
+                ctx.globalAlpha = Math.max(pt.alpha, 0);
+                ctx.fillStyle = pt.color;
+                ctx.shadowColor = pt.color;
+                ctx.shadowBlur = 8;
+                ctx.beginPath();
+                ctx.arc(shipX + pt.x, shipY + pt.y, pt.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+            ctx.shadowBlur = 0;
+            ctx.globalAlpha = 1.0;
+
+            // Tanques eyectados
+            if (tanksSeparated) {
+                dibujarTanque(shipX + leftTank.x, shipY + leftTank.y, leftTank.rot);
+                dibujarTanque(shipX + rightTank.x, shipY + rightTank.y, rightTank.rot);
+            }
+
+            // Dibujo de la NAVE HAIL MARY (Dark / Cyan accent)
+            ctx.save();
+            ctx.translate(shipX, shipY);
+
+            // Módulo de Combustible (Cuerpo central)
+            ctx.fillStyle = '#0f2454';
+            ctx.strokeStyle = '#00f0ff';
+            ctx.lineWidth = 1.5;
+            ctx.fillRect(-11, -38, 22, 74);
+            ctx.strokeRect(-11, -38, 22, 74);
+
+            // Punta de la Hail Mary
+            ctx.fillStyle = '#00f0ff';
+            ctx.shadowColor = '#00f0ff';
+            ctx.shadowBlur = 12;
+            ctx.beginPath();
+            ctx.moveTo(-11, -38);
+            ctx.lineTo(0, -60);
+            ctx.lineTo(11, -38);
+            ctx.closePath();
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            // Cabina / Domo Eridiano
+            ctx.fillStyle = '#7b2cbf';
+            ctx.beginPath();
+            ctx.arc(0, -20, 6, 0, Math.PI * 2);
+            ctx.fill();
+
+            // Módulos laterales si está en Fase 1
+            if (currentPhase === 1) {
+                dibujarTanque(-19, 5, 0);
+                dibujarTanque(19, 5, 0);
+            }
+
+            // Tobera de emisión de Astrófago
+            ctx.fillStyle = '#1e3a7a';
+            ctx.fillRect(-7, 36, 14, 7);
+
+            ctx.restore();
+
+            // Escala de altitud al costado derecho
+            ctx.strokeStyle = '#1e3a7a';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(w - 25, 40);
+            ctx.lineTo(w - 25, h - 40);
+            ctx.stroke();
+
+            const marcaApagadoY = h - 40 - (p.hApagado / hMaxVis) * (h - 80);
+            ctx.fillStyle = '#00f0ff';
+            ctx.fillRect(w - 32, marcaApagadoY, 14, 2);
+            ctx.font = '10px Share Tech Mono';
+            ctx.fillText('160km', w - 62, marcaApagadoY + 3);
+
+            const markerY = h - 40 - progress * (h - 80);
+            ctx.fillStyle = '#00f0ff';
+            ctx.shadowColor = '#00f0ff';
+            ctx.shadowBlur = 8;
+            ctx.beginPath();
+            ctx.arc(w - 25, markerY, 5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+        }
+
+        function dibujarTanque(x, y, rot) {
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(rot);
+
+            ctx.fillStyle = '#0a1638';
+            ctx.strokeStyle = '#1e3a7a';
+            ctx.lineWidth = 1;
+            ctx.fillRect(-4, -22, 8, 44);
+            ctx.strokeRect(-4, -22, 8, 44);
+
+            ctx.fillStyle = '#7b2cbf';
+            ctx.beginPath();
+            ctx.moveTo(-4, -22);
+            ctx.lineTo(0, -28);
+            ctx.lineTo(4, -22);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.restore();
+        }
+
+        window.onload = () => {
+            resizeCanvas();
+            dibujarEscena();
+        };
+    </script>
+</body>
+</html>
