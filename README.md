@@ -18,7 +18,7 @@ El programa simula las fases de ascenso y propulsión del cohete Space Launch Sy
 
 Nivel 1 (Plataforma LC-39B): Preparación inicial en reposo (v_0 = 0.0{ m/s}, y_0 = 0.0{ m}).
 
-Nivel 2 (Despegue e Impulso SRB): Aceleración inicial $a_1 = 20.0\text{ m/s}^2 impulsada por motores RS-25 y tanques sólidos SRB.
+Nivel 2 (Despegue e Impulso SRB): Aceleración inicial a_1 = 20.0\text{ m/s}^2 impulsada por motores RS-25 y tanques sólidos SRB.
 
 Nivel 3 (Desacople Tanques SRB): Separación a los $t_1 = 120.0{ s}, registrando velocidad V_1$ y altitud $y_1$.
 
