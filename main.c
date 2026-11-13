@@ -23,3 +23,32 @@ int main(void) {
                 printf("\n[Presione Enter para continuar...]");
                 leerOpcion(); // Pausa para leer
                 break;
+case 2:
+                ingresarParametros(&misionSLS);
+                misionSLS.completada = 0;
+                printf("\n [✔] Parametros cargados en el sistema.\n");
+                printf("\n[Presione Enter para continuar...]");
+                leerOpcion(); // Pausa para leer
+                break;
+            case 3:
+                calcularMision(&misionSLS);
+                printf("\n[Presione Enter para continuar...]");
+                leerOpcion(); // Pausa para leer
+                break;
+            case 4:
+                mostrarReporte(misionSLS);
+                printf("\n[Presione Enter para continuar...]");
+                leerOpcion(); // Pausa para leer
+                break;
+            case 0:
+                printf("\n Cerrando enlace con HAIL MARY. ¡Hasta la proxima mision, comandante!\n");
+                break;
+            default:
+                printf("\n [!] Opcion no reconocida. Ingrese un numero entre 0 y 4.\n");
+                printf("\n[Presione Enter para continuar...]");
+                leerOpcion(); // Pausa para leer
+        }
+    } while (opcion != 0);
+
+    return 0;
+}
