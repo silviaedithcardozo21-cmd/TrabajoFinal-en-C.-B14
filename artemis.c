@@ -103,3 +103,33 @@ void calcularMision(Mision *m) {
 
     printf("\n ¡CALCULOS DE SIMULACION FINALIZADOS EXITOSAMENTE!\n");
 }
+
+void mostrarReporte(Mision m) {
+    int i;
+
+    if (!m.completada) {
+        printf("\n [!] No hay telemetria disponible. Registre parametros y ejecute los calculos primero.\n");
+        return;
+    }
+
+    printf("\n==================== INFORME DE TELEMETRIA ====================\n");
+    printf(" a. Desacople SRB (t1 = %.2f s):\n", m.datos.tiempo1);
+    printf("    - Rapidez V1: %.2f m/s\n", m.resultados.v1);
+    printf("    - Altitud Y1: %.2f m (%.2f km)\n", m.resultados.y1, m.resultados.y1 / 1000.0);
+
+    printf(" b. Apagado de Motores Principales (h = %.2f m):\n", m.datos.alturaApagado);
+    printf("    - Rapidez Máxima V2: %.2f m/s\n", m.resultados.v2);
+
+    printf(" c. Apogeo por Inercia / Caida Libre:\n", m.datos.gravedad);
+    printf("    - Altitud Máxima Hmáx: %.2f m (%.2f km)\n", m.resultados.hmax, m.resultados.hmax / 1000.0);
+
+    printf(" d. Carga G sobre la Tripulacion:\n");
+    printf("    - Aceleracion Máxima: %.2f g\n", m.resultados.aceleracionG);
+
+    printf("\n---------------- HISTORIAL DE ETAPAS DE VUELO ----------------\n");
+    for (i = 0; i < MAX_ETAPAS; i++) {
+        printf(" [%d] %-25s | Vel: %10.2f m/s | Alt: %10.2f m\n",
+               i + 1, m.historial[i].nombre, m.historial[i].velocidad, m.historial[i].altura);
+    }
+    printf("================================================================\n");
+}
