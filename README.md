@@ -6,6 +6,8 @@
 **Cátedra:** Algoritmos y Estructuras de Datos  
 **Proyecto:** Trabajo Práctico Integrador Final – Simulador de Misiones Artemis / Consola Eridiana  
 **Grupo:** B14
+**Comision** k1.2**
+**Esenario 1**
 
 ### 👨‍🚀 Tripulación de la misión
 
