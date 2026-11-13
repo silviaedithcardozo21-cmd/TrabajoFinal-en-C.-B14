@@ -31,32 +31,32 @@ El programa simula el ascenso del cohete utilizando las ecuaciones del **Movimie
 
 La nave se encuentra en la plataforma de lanzamiento. Se establecen las condiciones iniciales de velocidad y altura:
 
-- Velocidad inicial: \(v_0 = 0.0\ \text{m/s}\)
-- Altura inicial: \(y_0 = 0.0\ \text{m}\)
+- Velocidad inicial: (v_0 = 0.0 {m/s})
+- Altura inicial: (y_0 = 0.0{m})
 
 **Nivel 2 – Despegue e impulso SRB**
 
-Comienza el ascenso del cohete mediante la primera fase de propulsión. Se utiliza una aceleración inicial de referencia de \(a_1 = 20.0\ \text{m/s}^2\).
+Comienza el ascenso del cohete mediante la primera fase de propulsión. Se utiliza una aceleración inicial de referencia de (a_1 = 20.0{m/s}^2).
 
 **Nivel 3 – Desacople de los tanques SRB**
 
-Al cumplirse el tiempo de referencia \(t_1 = 120.0\ \text{s}\), se registra la velocidad \(v_1\) y la altura \(y_1\) alcanzadas por el cohete.
+Al cumplirse el tiempo de referencia (t_1 = 120.0{s}), se registra la velocidad (v_1) y la altura (y_1) alcanzadas por el cohete.
 
 **Nivel 4 – Ascenso principal Core Stage**
 
-La nave continúa su trayectoria mediante la segunda fase de propulsión, con una aceleración de referencia \(a_2 = 12.5\ \text{m/s}^2\), hasta alcanzar la altitud de referencia de MECO:
+La nave continúa su trayectoria mediante la segunda fase de propulsión, con una aceleración de referencia (a_2 = 12.5 {m/s}^2), hasta alcanzar la altitud de referencia de MECO:
 
-\[
-h = 160.000\ \text{m}
-\]
+[
+h = 160.000 {m}
+]
 
 **Nivel 5 – Apagado de motores MECO y ascenso por inercia**
 
 Se simula el apagado de los motores. A partir de ese momento, el cohete continúa ascendiendo por inercia, bajo la acción de la gravedad terrestre, cuyo valor de referencia es:
 
-\[
-g = 9.80\ \text{m/s}^2
-\]
+[
+g = 9.80 {m/s}^2
+]
 
 **Nivel 6 – Apogeo y análisis de aceleración**
 
