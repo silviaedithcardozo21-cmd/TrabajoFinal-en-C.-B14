@@ -65,3 +65,6 @@ g = 9.80 {m/s}^2
 La consola determina la altura máxima alcanzada por el cohete antes de comenzar su descenso y expresa la aceleración de la primera fase como múltiplo de la gravedad terrestre.
 
 > Los valores indicados son parámetros de referencia para la simulación. Cuando corresponda, el usuario podrá ingresar distintos valores para analizar diferentes escenarios. La ambientación de *Project Hail Mary* es narrativa; los cálculos responden al escenario físico SLS/Orion planteado en la consigna.
+
+#Video de Youtube#
+Link: https://youtu.be/oNGVit2uueE
